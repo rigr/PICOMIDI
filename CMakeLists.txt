@@ -22,6 +22,7 @@ add_executable(picomidi
     src/din_midi.c
     src/midi_router.c
     src/usb_descriptors.c
+    src/tusb_midi_host.c         # Add this new file
 )
 
 pico_enable_stdio_usb(picomidi 0)
