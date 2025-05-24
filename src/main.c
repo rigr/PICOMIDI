@@ -1,6 +1,6 @@
 #include "pico/stdlib.h"
 #include "pico/multicore.h"
-#include "tusb.h"
+#include "tusb/tusb.h"
 #include "hardware/uart.h"
 #include "hardware/irq.h"
 #include "usb_midi_host.h"
