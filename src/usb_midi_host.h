@@ -16,7 +16,7 @@ typedef struct {
 
 extern usb_midi_host_device_t usb_host_devices[2];
 
-// Add these function declarations
+// Host MIDI functions (declare these if they're not in tusb.h)
 uint32_t tuh_midi_stream_read(uint8_t dev_addr, uint8_t *cable_num, void *buffer, uint16_t bufsize);
 bool tuh_midi_stream_write(uint8_t dev_addr, uint8_t cable_num, void const * buffer, uint16_t bufsize);
 
