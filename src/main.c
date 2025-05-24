@@ -4,7 +4,6 @@
 #include "usb_midi_host.h"
 #include "din_midi.h"
 #include "midi_router.h"
-#include "config.h"
 
 void core1_entry() {
     while (true) {
@@ -18,11 +17,8 @@ void core1_entry() {
 int main() {
     stdio_init_all();
     
-    // Wait for USB to initialize
-    while (!tud_connected()) {
-        sleep_ms(100);
-    }
-
+    // Initialize USB
+    tusb_init();
     usb_midi_host_init();
     din_midi_init();
     midi_router_init();
@@ -30,7 +26,8 @@ int main() {
     multicore_launch_core1(core1_entry);
     
     while (true) {
-        tud_task();
+        tud_task();  // Device task
+        tuh_task();  // Host task
     }
     
     return 0;
