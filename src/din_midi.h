@@ -18,8 +18,8 @@ void din_midi_task(void);
 void din_midi_send(uint8_t port, const uint8_t* data, size_t length);
 
 // IRQ handlers (implemented in .c file)
-void din_midi0_irq_handler(void);
-void din_midi1_irq_handler(void);
-void din_midi2_irq_handler(void);
+static void din_midi0_irq_handler(void);
+static void din_midi1_irq_handler(void);
+static void din_midi2_irq_handler(void);
 
 #endif // DIN_MIDI_H
