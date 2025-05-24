@@ -4,9 +4,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "tusb.h"
-#include "class/midi/midi_host.h"  // Add this for host-specific functions
 
-#define BOARD_TUH_RHPORT 0  // Define the USB host port
+// Define the USB host port (0 for default)
+#define BOARD_TUH_RHPORT 0
 
 typedef struct {
     bool connected;
@@ -15,7 +15,7 @@ typedef struct {
     uint8_t out_ep;
 } usb_midi_host_device_t;
 
-extern usb_midi_host_device_t usb_host_devices[2];  // Add extern declaration
+extern usb_midi_host_device_t usb_host_devices[2];
 
 void usb_midi_host_init(void);
 void usb_midi_host_task(void);
