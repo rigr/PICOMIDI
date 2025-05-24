@@ -13,54 +13,97 @@ A versatile MIDI router with USB host and device capabilities built on Raspberry
 
 ## Hardware Setup
 
-### Connections
+### USB Host Connections
 
-- **DIN MIDI Ports**:
-  - UART0: DIN1 (TX=GP0, RX=GP1)
-  - UART1: DIN2 (TX=GP4, RX=GP5)
-  - PIO or Software UART: DIN3 (TX=GP8, RX=GP9)
-  
-- **USB Host Ports**:
-  - Connect USB host controllers to GPIO pins configured for USB host mode
+You'll need to add USB host functionality using one of these methods:
 
-- **Power**:
-  - 5V power supply connected to VSYS
+#### Option 1: Using USB Host Shield Breakout
+1. Connect to GPIO pins:
+   - VBUS: Connect to Pico's VBUS (pin 40) or 5V supply
+   - D+: Connect to GPIO16 (pin 21)
+   - D-: Connect to GPIO17 (pin 22)
+   - GND: Connect to any GND pin
+
+#### Option 2: Using MAX3421E Chip
+1. Recommended wiring:
+   - VBUS: 5V supply
+   - D+: GPIO16 (pin 21)
+   - D-: GPIO17 (pin 22)
+   - INT: GPIO18 (pin 24)
+   - CS: GPIO19 (pin 25)
+   - SCK: GPIO18 (pin 24)
+   - MOSI: GPIO19 (pin 25)
+   - MISO: GPIO16 (pin 21)
+   - GND: Connect to Pico's GND
+
+### DIN MIDI Connections
+
+| MIDI Port | UART | TX Pin | RX Pin |
+|-----------|------|--------|--------|
+| DIN1      | UART0| GPIO0  | GPIO1  |
+| DIN2      | UART1| GPIO4  | GPIO5  |
+| DIN3      | PIO  | GPIO8  | GPIO9  |
+
+### Power Supply
+- Connect 5V power to VSYS (pin 39)
+- Ensure proper grounding between all connected devices
 
 ## Building the Firmware
 
 1. Set up the Pico SDK development environment
 2. Clone this repository with submodules:
-
+  
    git clone --recursive https://github.com/yourusername/picomidi.git
 
-4. Create a build directory:
+Create a build directory:
 
-   mkdir build
-   cd build
+  mkdir build
+  cd build
+  
+Configure with CMake:
 
-6. Configure with CMake:
+  cmake ..
 
-   cmake ..
+Build:
 
-8. Build:
-
-   make
-
-The resulting `picomidi.uf2` file will be in the build directory.
+  make -j4
 
 ## Flashing the Firmware
 
-1. Hold the BOOTSEL button on the Pico while connecting it to your computer
-2. Drag and drop the `picomidi.uf2` file to the RPI-RP2 drive
-3. The Pico will reboot and start running the firmware
+Hold the BOOTSEL button on the Pico while connecting it to your computer
+
+Drag and drop the picomidi.uf2 file to the RPI-RP2 drive
+
+The Pico will reboot and start running the firmware
 
 ## Usage
 
-1. Connect MIDI devices to the DIN ports
-2. Connect USB MIDI devices to the host ports
-3. Connect the Pico to a computer via USB for MIDI device mode
-4. All MIDI messages will be automatically routed between all connected ports
+Connect MIDI devices to the DIN ports
 
-## License
+Connect USB MIDI devices to the host ports
 
+Connect the Pico to a computer via USB for MIDI device mode
+
+All MIDI messages will be automatically routed between all connected ports
+
+## Configuration
+
+Edit include/config.h to:
+
+Change USB device name
+
+Modify MIDI routing behavior
+
+Adjust buffer sizes
+
+License
 MIT License - see LICENSE file for details
+
+
+Key hardware notes included:
+1. Clear USB host connection options with specific GPIO pins
+2. DIN MIDI port mapping table
+3. Power supply requirements
+4. Visual pin references for easy wiring
+5. Multiple implementation options for USB host
+
