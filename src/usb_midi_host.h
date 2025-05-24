@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "tusb.h"
+#include "pico/stdlib.h"
+
 
 // Maximum number of USB host devices we support
 #define MAX_USB_HOST_DEVICES 2
