@@ -16,7 +16,7 @@ pico_sdk_init()
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/src  # Add src to include path
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${PICO_SDK_PATH}/lib/tinyusb/src
 )
 
