@@ -30,3 +30,37 @@ A versatile MIDI router with USB host and device capabilities built on Raspberry
 
 1. Set up the Pico SDK development environment
 2. Clone this repository with submodules:
+
+   git clone --recursive https://github.com/yourusername/picomidi.git
+
+4. Create a build directory:
+
+   mkdir build
+   cd build
+
+6. Configure with CMake:
+
+   cmake ..
+
+8. Build:
+
+   make
+
+The resulting `picomidi.uf2` file will be in the build directory.
+
+## Flashing the Firmware
+
+1. Hold the BOOTSEL button on the Pico while connecting it to your computer
+2. Drag and drop the `picomidi.uf2` file to the RPI-RP2 drive
+3. The Pico will reboot and start running the firmware
+
+## Usage
+
+1. Connect MIDI devices to the DIN ports
+2. Connect USB MIDI devices to the host ports
+3. Connect the Pico to a computer via USB for MIDI device mode
+4. All MIDI messages will be automatically routed between all connected ports
+
+## License
+
+MIT License - see LICENSE file for details
