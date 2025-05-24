@@ -12,7 +12,7 @@ static uint din_rx_pin[NUM_DIN_PORTS] = {1, 5, 9}; // Example pins
 static void din_midi_irq_handler(uint port_index) {
     while (uart_is_readable(din_uart[port_index])) {
         uint8_t ch = uart_getc(din_uart[port_index]);
-        midi_router_route(SOURCE_DIN_IN + port_index, &ch, 1);
+        midi_router_route(SOURCE_DIN_IN1 + port_index, &ch, 1);
     }
 }
 
