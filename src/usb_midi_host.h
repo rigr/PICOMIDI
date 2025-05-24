@@ -5,7 +5,6 @@
 #include <stdbool.h>
 #include "tusb.h"
 
-// Define the USB host port (0 for default)
 #define BOARD_TUH_RHPORT 0
 
 typedef struct {
