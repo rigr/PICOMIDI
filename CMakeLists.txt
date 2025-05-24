@@ -24,6 +24,11 @@ add_executable(picomidi
     src/usb_descriptors.c
 )
 
+target_include_directories(picomidi PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
 pico_enable_stdio_usb(picomidi 0)
 pico_enable_stdio_uart(picomidi 0)
 
