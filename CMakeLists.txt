@@ -6,14 +6,14 @@ project(picomidi C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
+# Enable TinyUSB host features
+add_definitions(-DCFG_TUH_MIDI=1)
+
 pico_sdk_init()
 
-# Add TinyUSB includes
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${PICO_SDK_PATH}/lib/tinyusb/src
-    ${PICO_SDK_PATH}/lib/tinyusb/src/common
-    ${PICO_SDK_PATH}/lib/tinyusb/src/class/midi
 )
 
 add_executable(picomidi
@@ -22,11 +22,6 @@ add_executable(picomidi
     src/din_midi.c
     src/midi_router.c
     src/usb_descriptors.c
-)
-
-target_include_directories(picomidi PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 pico_enable_stdio_usb(picomidi 0)
@@ -39,6 +34,7 @@ target_link_libraries(picomidi
     pico_multicore
     tinyusb_device
     tinyusb_host
+    pico_stdlib
 )
 
 pico_add_extra_outputs(picomidi)
