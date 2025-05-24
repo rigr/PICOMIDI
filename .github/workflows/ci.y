@@ -21,7 +21,8 @@ jobs:
         git submodule update --init --recursive lib/tinyusb
         cd ..
         echo "PICO_SDK_PATH=$(pwd)/pico-sdk" >> $GITHUB_ENV
-        
+        echo "PICO_TINYUSB_PATH=$(pwd)/pico-sdk/lib/tinyusb" >> $GITHUB_ENV
+
     - name: Install dependencies
       run: |
         sudo apt update
