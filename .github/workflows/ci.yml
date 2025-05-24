@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  PICO_SDK_PATH: ${{ github.workspace }}/pico-sdk
-  PICO_EXTRAS_PATH: ${{ github.workspace }}/pico-extras
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +17,10 @@ jobs:
     - name: Set up Pico SDK
       run: |
         git clone --depth 1 --branch master https://github.com/raspberrypi/pico-sdk.git
-        git clone --depth 1 https://github.com/raspberrypi/pico-extras.git
+        cd pico-sdk
+        git submodule update --init --recursive
+        cd ..
+        echo "PICO_SDK_PATH=$(pwd)/pico-sdk" >> $GITHUB_ENV
         
     - name: Install dependencies
       run: |
