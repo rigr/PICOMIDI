@@ -8,10 +8,12 @@ set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
 
-# Set paths for TinyUSB config
+# Add TinyUSB includes
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${PICO_SDK_PATH}/lib/tinyusb/src
+    ${PICO_SDK_PATH}/lib/tinyusb/src/common
+    ${PICO_SDK_PATH}/lib/tinyusb/src/class/midi
 )
 
 add_executable(picomidi
@@ -19,9 +21,9 @@ add_executable(picomidi
     src/usb_midi_host.c
     src/din_midi.c
     src/midi_router.c
+    src/usb_descriptors.c
 )
 
-# Disable stdio USB since we're handling it ourselves
 pico_enable_stdio_usb(picomidi 0)
 pico_enable_stdio_uart(picomidi 0)
 
