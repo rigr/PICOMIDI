@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include "usb_midi_host.h"  // Include this for usb_host_devices
 
 // MIDI source types
 typedef enum {
@@ -10,7 +11,7 @@ typedef enum {
     SOURCE_DIN_IN1,     // DIN MIDI IN 1
     SOURCE_DIN_IN2,     // DIN MIDI IN 2
     SOURCE_DIN_IN3,     // DIN MIDI IN 3
-    SOURCE_USB_HOST1,   // USB Host port 1
+    SOURCE_USB_HOST1,   // USB Host port 1  --  Changed from SOURCE_USB_HOST
     SOURCE_USB_HOST2,   // USB Host port 2
     NUM_SOURCES
 } midi_source_t;
