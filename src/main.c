@@ -17,17 +17,19 @@ void core1_entry() {
 int main() {
     stdio_init_all();
     
-    // Initialize USB
+    // Initialize all components
     tusb_init();
     usb_midi_host_init();
     din_midi_init();
     midi_router_init();
     
+    // Start processing on core 1
     multicore_launch_core1(core1_entry);
     
+    // Core 0 handles USB tasks
     while (true) {
-        tud_task();  // Device task
-        tuh_task();  // Host task
+        tud_task(); // Device task
+        tuh_task(); // Host task
     }
     
     return 0;
