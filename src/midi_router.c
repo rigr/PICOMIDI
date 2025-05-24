@@ -1,7 +1,7 @@
 #include "midi_router.h"
 #include "usb_midi_host.h"
 #include "din_midi.h"
-#include "tusb.h"
+// #include "tusb.h"  already included in usb_midi_host.h
 
 // MIDI routing table
 static bool routing_table[NUM_SOURCES][NUM_DESTINATIONS] = {
