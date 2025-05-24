@@ -17,19 +17,19 @@ static void din_midi_irq_handler(uint port_index) {
     }
 }
 
-static void din_midi0_irq_handler() {
+static void din_midi0_irq_handler(void) {
     din_midi_irq_handler(0);
 }
 
-static void din_midi1_irq_handler() {
+static void din_midi1_irq_handler(void) {
     din_midi_irq_handler(1);
 }
 
-static void din_midi2_irq_handler() {
+static void din_midi2_irq_handler(void) {
     din_midi_irq_handler(2);
 }
 
-void din_midi_init() {
+void din_midi_init(void) {
     for (int i = 0; i < NUM_DIN_PORTS; i++) {
         uart_init(din_uart[i], 31250); // MIDI standard baud rate
         gpio_set_function(din_tx_pin[i], GPIO_FUNC_UART);
@@ -54,7 +54,7 @@ void din_midi_init() {
     }
 }
 
-void din_midi_task() {
+void din_midi_task(void) {
     // Background processing if needed
 }
 
