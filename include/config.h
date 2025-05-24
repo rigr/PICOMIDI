@@ -1,6 +1,10 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// Ensure TinyUSB is configured
+#define CFG_TUSB_MCU OPT_MCU_RP2040
+#define CFG_TUSB_OS  OPT_OS_PICO
+
 // Hardware configuration
 #define DIN1_UART_INST   uart0
 #define DIN1_TX_PIN      0
