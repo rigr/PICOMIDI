@@ -1,6 +1,7 @@
 #include "usb_midi_host.h"
 #include "midi_router.h"
 #include "tusb.h"
+#include "pico/stdlib.h"
 
 #define MAX_USB_HOST_DEVICES 2
 
