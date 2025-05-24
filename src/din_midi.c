@@ -2,6 +2,7 @@
 #include "midi_router.h"
 #include "hardware/uart.h"
 #include "hardware/irq.h"
+#include "hardware/gpio.h"
 
 #define NUM_DIN_PORTS 3
 
