@@ -1,6 +1,5 @@
 #include "usb_descriptors.h"
 
-// Device Descriptor
 tusb_desc_device_t const desc_device = {
     .bLength            = sizeof(tusb_desc_device_t),
     .bDescriptorType    = TUSB_DESC_DEVICE,
@@ -18,7 +17,6 @@ tusb_desc_device_t const desc_device = {
     .bNumConfigurations = 0x01
 };
 
-// Configuration Descriptor
 uint8_t const desc_configuration[] = {
     // Config number, interface count, string index, total length, attribute, power in mA
     TUD_CONFIG_DESCRIPTOR(1, ITF_NUM_TOTAL, 0, TUD_CONFIG_DESC_LEN + TUD_MIDI_DESC_LEN, TUSB_DESC_CONFIG_ATT_REMOTE_WAKEUP, 100),
@@ -27,7 +25,6 @@ uint8_t const desc_configuration[] = {
     TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 0, EPNUM_MIDI_OUT, EPNUM_MIDI_IN, 64)
 };
 
-// String Descriptors
 char const* string_desc_arr[] = {
     (const char[]) {0x09, 0x04}, // English
     "PicoMIDI",                  // Manufacturer
