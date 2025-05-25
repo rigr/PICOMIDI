@@ -1,4 +1,3 @@
-#include "tusb.h"
 #include "usb_descriptors.h"
 
 tusb_desc_device_t const desc_device = {
