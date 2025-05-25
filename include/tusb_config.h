@@ -5,8 +5,7 @@
 extern "C" {
 #endif
 
-// Common Configuration
-#define CFG_TUSB_RHPORT0_MODE   OPT_MODE_DEVICE
+#define CFG_TUSB_RHPORT0_MODE   (OPT_MODE_DEVICE | OPT_MODE_HOST)
 #define CFG_TUSB_OS             OPT_OS_PICO
 #define CFG_TUSB_MCU            OPT_MCU_RP2040
 
