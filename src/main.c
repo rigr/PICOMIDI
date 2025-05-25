@@ -7,28 +7,28 @@
 #include "midi_router.h"
 
 #define LED_PIN 25
-uint32_t last_activity_time = 0;
+absolute_time_t last_activity_time = nil_time;
 
 void core1_entry() {
-    uint32_t last_blink = 0;
     while (true) {
-        uint32_t now = to_ms_since_boot(get_absolute_time());
+        absolute_time_t now = get_absolute_time();
         
-        if (tud_connected()) {
-            // Solid on when connected
+        if (tud_mounted()) {  // Check if USB is properly mounted
+            // Solid on when properly connected
             gpio_put(LED_PIN, true);
             
-            // Blink on activity
-            if ((now - last_activity_time) < 50) {
+            // Blink briefly on activity
+            if (absolute_time_diff_us(last_activity_time, now) < 50000) { // 50ms blink
                 gpio_put(LED_PIN, !gpio_get(LED_PIN));
             }
         } else {
-            // Slow blink when not connected
-            if ((now - last_blink) > 500) {
+            // Slow blink (500ms) when not properly connected
+            if (absolute_time_diff_us(last_activity_time, now) > 500000) {
                 gpio_put(LED_PIN, !gpio_get(LED_PIN));
-                last_blink = now;
+                last_activity_time = now;
             }
         }
+        
         sleep_ms(10);
     }
 }
@@ -49,12 +49,12 @@ int main() {
     multicore_launch_core1(core1_entry);
     
     while (true) {
-        tud_task();
-        tuh_task();
+        tud_task();  // Handle device tasks
+        tuh_task();  // Handle host tasks
         
         // Update activity time if MIDI is active
         if (tud_midi_available() || usb_host_devices[0].connected || usb_host_devices[1].connected) {
-            last_activity_time = to_ms_since_boot(get_absolute_time());
+            last_activity_time = get_absolute_time();
         }
     }
     
