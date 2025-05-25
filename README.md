@@ -48,6 +48,20 @@ You'll need to add USB host functionality using one of these methods:
 - Connect 5V power to VSYS (pin 39)
 - Ensure proper grounding between all connected devices
 
+## Status LED Behavior
+
+- **Solid On**: Connected to computer as USB MIDI device
+- **Blinking Fast**: MIDI data being transmitted/received
+- **Slow Blink**: Not connected to computer
+- **Off**: Critical error (should never occur)
+
+## USB Device Recognition
+
+The Pico will now properly identify as:
+- Vendor ID: 0x1209 (PID Codes)
+- Product ID: 0x4750
+- Product Name: "PicoMIDI"  
+
 ## Building the Firmware
 
 1. Set up the Pico SDK development environment

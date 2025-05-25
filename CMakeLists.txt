@@ -6,12 +6,6 @@ project(picomidi C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-# Force enable MIDI host
-add_definitions(
-    -DCFG_TUH_MIDI=1
-    -DCFG_TUH_DEVICE_MAX=2
-)
-
 pico_sdk_init()
 
 include_directories(
@@ -42,3 +36,11 @@ target_link_libraries(picomidi
 )
 
 pico_add_extra_outputs(picomidi)
+
+target_compile_definitions(picomidi PRIVATE
+    CFG_TUD_VID=0x1209
+    CFG_TUD_PID=0x4750
+    PICO_DEFAULT_UART=0
+    PICO_DEFAULT_UART_TX_PIN=0
+    PICO_DEFAULT_UART_RX_PIN=1
+)

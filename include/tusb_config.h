@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-// Common Configuration
-#define CFG_TUSB_RHPORT0_MODE   (OPT_MODE_HOST | OPT_MODE_DEVICE)
+// #define CFG_TUSB_RHPORT0_MODE   (OPT_MODE_DEVICE | OPT_MODE_HOST)
+#define CFG_TUSB_RHPORT0_MODE   OPT_MODE_DEVICE
 #define CFG_TUSB_OS             OPT_OS_PICO
 #define CFG_TUSB_MCU            OPT_MCU_RP2040
 
@@ -15,6 +15,8 @@ extern "C" {
 #define CFG_TUD_MIDI            1
 #define CFG_TUD_MIDI_RX_BUFSIZE 64
 #define CFG_TUD_MIDI_TX_BUFSIZE 64
+#define CFG_TUD_VID            0x1209  // VID from pid.codes
+#define CFG_TUD_PID            0x4750  // Test PID
 
 // Host Configuration
 #define CFG_TUH_ENABLED         1
